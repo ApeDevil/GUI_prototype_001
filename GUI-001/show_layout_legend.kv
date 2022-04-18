@@ -1,0 +1,246 @@
+#:kivy 2.1.0
+
+MainWidget:
+
+<MainWidget>:
+    FloatLayout:
+        size: root.size
+		pos: root.pos
+
+
+        FloatLayout:
+            Image:
+                source: 'images/layout_legend.png'
+                id: img
+                allow_stretch: True
+                keep_ratio: False
+
+        BoxLayout:
+            size_hint:(1,0.1)
+            pos_hint: {'top': 1}
+            Label:
+                id: id_layerLabel
+                text: 'ttttt'
+                font_size: (root.height*1**2 + root.width*1**2)/30
+
+
+
+
+        FloatLayout:
+            Blabel:
+                id: LI1
+                pos_hint: {'center_x': 0.356, 'center_y': 0.775}
+            Blabel:
+                id: LI2
+                pos_hint: {'center_x': 0.341, 'center_y': 0.698}
+            Blabel:
+                id: LI3
+                pos_hint: {'center_x': 0.3255, 'center_y': 0.619}
+            Blabel:
+                id: LI4
+                pos_hint: {'center_x': 0.31, 'center_y': 0.541}
+
+            Blabel:
+                id: LM1
+                pos_hint: {'center_x': 0.248, 'center_y': 0.847}
+            Blabel:
+                id: LM2
+                pos_hint: {'center_x': 0.244, 'center_y': 0.763}
+            Blabel:
+                id: LM3
+                pos_hint: {'center_x': 0.24, 'center_y': 0.681}
+            Blabel:
+                id: LM4
+                pos_hint: {'center_x': 0.2365, 'center_y': 0.5985}
+
+            Blabel:
+                id: LR1
+                pos_hint: {'center_x': 0.127, 'center_y': 0.809}
+            Blabel:
+                id: LR2
+                pos_hint: {'center_x': 0.136, 'center_y': 0.729}
+            Blabel:
+                id: LR3
+                pos_hint: {'center_x': 0.145, 'center_y': 0.647}
+            Blabel:
+                id: LR4
+                pos_hint: {'center_x': 0.1545, 'center_y': 0.566}
+
+            Blabel:
+                id: LP1
+                pos_hint: {'center_x': 0.04, 'center_y': 0.6615}
+            Blabel:
+                id: LP2
+                pos_hint: {'center_x': 0.061, 'center_y': 0.588}
+            Blabel:
+                id: LP3
+                pos_hint: {'center_x': 0.0825, 'center_y': 0.5135}
+
+            Blabel:
+                id: LT11
+                pos_hint: {'center_x': 0.417, 'center_y': 0.447}
+            Blabel:
+                id: LT12
+                pos_hint: {'center_x': 0.347, 'center_y': 0.447}
+
+            Blabel:
+                id: LT21
+                pos_hint: {'center_x': 0.452, 'center_y': 0.323}
+            Blabel:
+                id: LT22
+                pos_hint: {'center_x': 0.382, 'center_y': 0.324}
+            Blabel:
+                id: LT23
+                pos_hint: {'center_x': 0.312, 'center_y': 0.323}
+
+            Blabel:
+                id: LT31
+                pos_hint: {'center_x': 0.452, 'center_y': 0.198}
+            Blabel:
+                id: LT32
+                pos_hint: {'center_x': 0.382, 'center_y': 0.199}
+            Blabel:
+                id: LT33
+                pos_hint: {'center_x': 0.312, 'center_y': 0.1995}
+
+            Blabel:
+                id: LT41
+                pos_hint: {'center_x': 0.417, 'center_y': 0.074}
+            Blabel:
+                id: LT42
+                pos_hint: {'center_x': 0.347, 'center_y': 0.074}
+
+
+        FloatLayout:
+            Blabel:
+                id: RI1
+                pos_hint: {'center_x': 1-0.356, 'center_y': 0.775}
+            Blabel:
+                id: RI2
+                pos_hint: {'center_x': 1-0.341, 'center_y': 0.698}
+            Blabel:
+                id: RI3
+                pos_hint: {'center_x': 1-0.3255, 'center_y': 0.619}
+            Blabel:
+                id: RI4
+                pos_hint: {'center_x': 1-0.31, 'center_y': 0.541}
+
+            Blabel:
+                id: RM1
+                pos_hint: {'center_x': 1-0.248, 'center_y': 0.847}
+            Blabel:
+                id: RM2
+                pos_hint: {'center_x': 1-0.244, 'center_y': 0.763}
+            Blabel:
+                id: RM3
+                pos_hint: {'center_x': 1-0.24, 'center_y': 0.681}
+            Blabel:
+                id: RM4
+                pos_hint: {'center_x': 1-0.2365, 'center_y': 0.5985}
+
+            Blabel:
+                id: RR1
+                pos_hint: {'center_x': 1-0.127, 'center_y': 0.809}
+            Blabel:
+                id: RR2
+                pos_hint: {'center_x': 1-0.136, 'center_y': 0.729}
+            Blabel:
+                id: RR3
+                pos_hint: {'center_x': 1-0.145, 'center_y': 0.647}
+            Blabel:
+                id: RR4
+                pos_hint: {'center_x': 1-0.1545, 'center_y': 0.566}
+
+            Blabel:
+                id: RP1
+                pos_hint: {'center_x': 1-0.04, 'center_y': 0.6615}
+            Blabel:
+                id: RP2
+                pos_hint: {'center_x': 1-0.061, 'center_y': 0.588}
+            Blabel:
+                id: RP3
+                pos_hint: {'center_x': 1-0.0825, 'center_y': 0.5135}
+
+            Blabel:
+                id: RT11
+                pos_hint: {'center_x': 1-0.417, 'center_y': 0.447}
+            Blabel:
+                id: RT12
+                pos_hint: {'center_x': 1-0.347, 'center_y': 0.447}
+
+            Blabel:
+                id: RT21
+                pos_hint: {'center_x': 1-0.452, 'center_y': 0.323}
+            Blabel:
+                id: RT22
+                pos_hint: {'center_x': 1-0.382, 'center_y': 0.324}
+            Blabel:
+                id: RT23
+                pos_hint: {'center_x': 1-0.312, 'center_y': 0.323}
+
+            Blabel:
+                id: RT31
+                pos_hint: {'center_x': 1-0.452, 'center_y': 0.198}
+            Blabel:
+                id: RT32
+                pos_hint: {'center_x': 1-0.382, 'center_y': 0.199}
+            Blabel:
+                id: RT33
+                pos_hint: {'center_x': 1-0.312, 'center_y': 0.1995}
+
+            Blabel:
+                id: RT41
+                pos_hint: {'center_x': 1-0.417, 'center_y': 0.074}
+            Blabel:
+                id: RT42
+                pos_hint: {'center_x': 1-0.347, 'center_y': 0.074}
+
+
+
+#        BoxLayout:
+#            size_hint: 0.1,0.1
+#            Button:
+##                size: self.size
+##                pos: self.pos
+#                text: 'Exit'
+#                on_press: app.stop()
+
+#        Button:
+#            text: 't1'
+#            on_press: root.test()
+
+
+
+#    FloatLayout:
+#        size_hint: self.size
+#		padding: [10, 10, 10, 10] #padding: [padding_left, padding_top, padding_right, padding_bottom]
+#		id: id_mainWFloatLayout
+
+
+
+#    BoxLayout:
+#        size_hint: self.size
+#        #size_hint:(1,.1)
+#        Button:
+#            text: 'Exit'
+#            on_release: app.stop()
+
+
+
+<Blabel@Label>
+    markup: True
+    font_size: (root.height*1**2 + root.width*1**2)/7
+    halign: 'center'
+    #valign: 'middle'
+	background_color: (0,0,0,0)
+	#background_normal: ''
+	color: (0,0,0,1) #text_color
+	size_hint: (0.030927835, 0.055)  #600/1067=0,562324274
+
+	canvas.before:
+		Color:
+			rgba: (.08,.08,.08,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [100]

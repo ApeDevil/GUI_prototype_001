@@ -1,0 +1,1585 @@
+#:kivy 2.1.0
+#:import Factory kivy.factory.Factory
+
+WindowManager:
+
+	MainWindow:
+	LayoutMenu:
+
+	ButtonAssignment:
+	JoystickAssignment:
+	TrackballAssignment:
+	WheelAssignment:
+
+
+#-------------------------------------------custom buttons------------------
+<KeyButton@Button>
+
+	on_release: app.root.get_screen('ButtonAssignment').assignKey(self.text,self.hexval)
+
+<CatButton@Button>
+    font_size: (root.height*1**2 + root.width*1**2)/5.5
+	background_color: (0,0,0,0)
+	#background_normal: ''
+	color: (0,0,0,1) #text_color
+	size_hint: (0.030927835, 0.055)  #600/1067=0,562324274
+
+	canvas.before:
+		Color:
+			rgba: (211/255,188/255,95/255,1) if self.state == 'normal' else (1,0,1,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [100]
+
+	on_release:
+		app.root.current = 'ButtonAssignment'
+		app.root.get_screen('MainWindow').manager.transition.direction ='down'
+		app.root.get_screen('ButtonAssignment').ids.id_current_button.text = self.text
+		app.root.get_screen('ButtonAssignment').deleteBA()
+		app.root.get_screen('ButtonAssignment').ids.id_BA_Screen.currentLayer = app.root.get_screen('MainWindow').ids.id_layer_spinner.text
+
+<TM_Button@Button>
+    #font_size: (root.height*1**2 + root.width*1**2)/5
+	background_color: (0,0,0,0)
+	background_normal: ''
+	color: (0,0,0,0) #text_color
+
+	canvas.before:
+		Color:
+			rgba: (1,1,1,0) if self.state == 'normal' else (1,0,1,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [100]
+
+	on_release:
+		app.root.get_screen('MainWindow').manager.transition.direction ='down'
+		#app.root.get_screen('ButtonAssignment').ids.id_current_button.text = self.text
+
+
+#----------------------------------------spinner
+<MySpinnerOption@SpinnerOption>:
+    #font_size: (root.height*1**2 + root.width*1**2)/5.5
+	background_color: (0,0,0,0)
+#	#background_normal: ''
+	color: (0,0,0,1) #text_color
+	#size_hint: (1, 1)  #600/1067=0,562324274
+	spacing: 10
+	canvas.before:
+
+		Color:
+			rgba: (1,1,1,1)
+
+		RoundedRectangle:
+		    #spacing: 10
+			size: self.width, self.height
+			#pos: self.pos[0]*2,self.pos[1]/2
+			radius: [30]
+
+
+#--------------------------------------------custom widgets for main window
+<LeftFingerButtons>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'LI1'
+			pos_hint: {'center_x': 0.321, 'center_y': 0.725}
+		CatButton:
+			text: 'LI2'
+			pos_hint: {'center_x': 0.307, 'center_y': 0.656}
+		CatButton:
+			text: 'LI3'
+			pos_hint: {'center_x': 0.294, 'center_y': 0.59}
+		CatButton:
+			text: 'LI4'
+			pos_hint: {'center_x': 0.28, 'center_y': 0.52}
+
+		CatButton:
+			text: 'LM1'
+			pos_hint: {'center_x': 0.228, 'center_y': 0.785}
+		CatButton:
+			text: 'LM2'
+			pos_hint: {'center_x': 0.2245, 'center_y': 0.718}
+		CatButton:
+			text: 'LM3'
+			pos_hint: {'center_x': 0.2215, 'center_y': 0.647}
+		CatButton:
+			text: 'LM4'
+			pos_hint: {'center_x': 0.218, 'center_y': 0.575}
+
+		CatButton:
+			text: 'LR1'
+			pos_hint: {'center_x': 0.123, 'center_y': 0.752}
+		CatButton:
+			text: 'LR2'
+			pos_hint: {'center_x': 0.132, 'center_y': 0.683}
+		CatButton:
+			text: 'LR3'
+			pos_hint: {'center_x': 0.1395, 'center_y': 0.617}
+		CatButton:
+			text: 'LR4'
+			pos_hint: {'center_x': 0.148, 'center_y': 0.545}
+
+		CatButton:
+			text: 'LP1'
+			pos_hint: {'center_x': 0.049, 'center_y': 0.629}
+		CatButton:
+			text: 'LP2'
+			pos_hint: {'center_x': 0.067, 'center_y': 0.568}
+		CatButton:
+			text: 'LP3'
+			pos_hint: {'center_x': 0.085, 'center_y': 0.5}
+
+<LeftThumbButtons>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'LT11'
+			pos_hint: {'center_x': 0.352, 'center_y': 0.433}
+		CatButton:
+			text: 'LT12'
+			pos_hint: {'center_x': 0.317, 'center_y': 0.395}
+
+		CatButton:
+			text: 'LT21'
+			pos_hint: {'center_x': 0.387, 'center_y': 0.395}
+		CatButton:
+			text: 'LT22'
+			pos_hint: {'center_x': 0.353, 'center_y': 0.358}
+		CatButton:
+			text: 'LT23'
+			pos_hint: {'center_x': 0.318, 'center_y': 0.324}
+
+		CatButton:
+			text: 'LT31'
+			pos_hint: {'center_x': 0.407, 'center_y': 0.332}
+		CatButton:
+			text: 'LT32'
+			pos_hint: {'center_x': 0.372, 'center_y': 0.297}
+		CatButton:
+			text: 'LT33'
+			pos_hint: {'center_x': 0.338, 'center_y': 0.264}
+
+		CatButton:
+			text: 'LT41'
+			pos_hint: {'center_x': 0.407, 'center_y': 0.26}
+		CatButton:
+			text: 'LT42'
+			pos_hint: {'center_x': 0.372, 'center_y': 0.225}
+
+<LeftThumbJoystick>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'LT11'
+			pos_hint: {'center_x': 0.352, 'center_y': 0.433}
+		CatButton:
+			text: 'LT12'
+			pos_hint: {'center_x': 0.317, 'center_y': 0.395}
+
+		CatButton:
+			text: 'LT41'
+			pos_hint: {'center_x': 0.407, 'center_y': 0.26}
+		CatButton:
+			text: 'LT42'
+			pos_hint: {'center_x': 0.372, 'center_y': 0.225}
+
+		Image:
+			source: 'images/J90.png'
+			id: id_lTM
+			pos_hint: {'center_x': 0.362, 'center_y': 0.329}
+			size_hint: (0.08434, 0.15)  #600/1067=0,562324274
+			allow_stretch: True
+			keep_ratio: False
+
+			TM_Button:
+				text: 'Joystick'
+				size: id_lTM.size
+				pos: id_lTM.pos
+				on_release: 
+					app.root.current = 'JoystickAssignment'
+					app.root.get_screen('JoystickAssignment').addLeftJoystick()
+					app.root.get_screen('JoystickAssignment').ids.id_JA_L.text = 'Left-Handed Joystick'
+
+<LeftThumbTrackball>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'LT11'
+			pos_hint: {'center_x': 0.352, 'center_y': 0.433}
+		CatButton:
+			text: 'LT12'
+			pos_hint: {'center_x': 0.317, 'center_y': 0.395}
+
+		CatButton:
+			text: 'LT41'
+			pos_hint: {'center_x': 0.407, 'center_y': 0.26}
+		CatButton:
+			text: 'LT42'
+			pos_hint: {'center_x': 0.372, 'center_y': 0.225}
+
+		Image:
+			source: 'images/T90.png'
+			id: id_lTM
+			pos_hint: {'center_x': 0.362, 'center_y': 0.329}
+			size_hint: (0.067478913, 0.12)  #600/1067=0,562324274
+			allow_stretch: True
+			keep_ratio: False
+
+			TM_Button:
+				text: 'Trackball'
+				size: id_lTM.size
+				pos: id_lTM.pos
+				on_release: 
+					app.root.current = 'TrackballAssignment'
+					app.root.get_screen('TrackballAssignment').addLeftTrackball()
+					app.root.get_screen('TrackballAssignment').ids.id_TA_L.text = 'Left-Handed Trackball'
+
+<LeftWheel>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/W.png'
+			id: id_lW
+			pos_hint: {'center_x': 0.4, 'center_y': 0.55}
+			size_hint: (0.05, 0.1)  #600/800=0,75
+			allow_stretch: True
+			keep_ratio: False
+
+		Button:
+			size_hint: (.04, .12)
+			pos_hint: {'center_x': 0.4, 'center_y': 0.55}
+			background_color: (0,0,0,0)
+			color: (0,0,0,0) #text_color
+
+			canvas.before:
+				PushMatrix
+				Rotate:
+					angle: -20
+					origin: self.center
+				Color:
+					rgba: (1,1,1,0.5) if self.state == 'normal' else (1,0,1,1)
+				RoundedRectangle:
+					size: self.size
+					pos: self.pos
+					radius: [5]
+			canvas.after:
+				PopMatrix
+
+			on_release:
+				app.root.current = 'WheelAssignment'
+				app.root.get_screen('MainWindow').manager.transition.direction ='down'
+				app.root.get_screen('WheelAssignment').addLeftWheel()
+				app.root.get_screen('WheelAssignment').ids.id_WA_L.text = 'Left-Handed Scroll Wheel'
+
+		
+<RightFingerButtons>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'RI1'
+			pos_hint: {'center_x': 1-0.321, 'center_y': 0.725}
+		CatButton:
+			text: 'RI2'
+			pos_hint: {'center_x': 1-0.307, 'center_y': 0.656}
+		CatButton:
+			text: 'RI3'
+			pos_hint: {'center_x': 1-0.294, 'center_y': 0.59}
+		CatButton:
+			text: 'RI4'
+			pos_hint: {'center_x': 1-0.28, 'center_y': 0.52}
+
+		CatButton:
+			text: 'RM1'
+			pos_hint: {'center_x': 1-0.228, 'center_y': 0.785}
+		CatButton:
+			text: 'RM2'
+			pos_hint: {'center_x': 1-0.2245, 'center_y': 0.718}
+		CatButton:
+			text: 'RM3'
+			pos_hint: {'center_x': 1-0.2215, 'center_y': 0.647}
+		CatButton:
+			text: 'RM4'
+			pos_hint: {'center_x': 1-0.218, 'center_y': 0.575}
+
+		CatButton:
+			text: 'RR1'
+			pos_hint: {'center_x': 1-0.123, 'center_y': 0.752}
+		CatButton:
+			text: 'RR2'
+			pos_hint: {'center_x': 1-0.132, 'center_y': 0.683}
+		CatButton:
+			text: 'RR3'
+			pos_hint: {'center_x': 1-0.1395, 'center_y': 0.617}
+		CatButton:
+			text: 'RR4'
+			pos_hint: {'center_x': 1-0.148, 'center_y': 0.545}
+
+		CatButton:
+			text: 'RP1'
+			pos_hint: {'center_x': 1-0.049, 'center_y': 0.629}
+		CatButton:
+			text: 'RP2'
+			pos_hint: {'center_x': 1-0.067, 'center_y': 0.568}
+		CatButton:
+			text: 'RP3'
+			pos_hint: {'center_x': 1-0.085, 'center_y': 0.5}
+
+<RightThumbButtons>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'RT11'
+			pos_hint: {'center_x': 1-0.352, 'center_y': 0.433}
+		CatButton:
+			text: 'RT12'
+			pos_hint: {'center_x': 1-0.317, 'center_y': 0.395}
+
+		CatButton:
+			text: 'RT21'
+			pos_hint: {'center_x': 1-0.387, 'center_y': 0.395}
+		CatButton:
+			text: 'RT22'
+			pos_hint: {'center_x': 1-0.353, 'center_y': 0.358}
+		CatButton:
+			text: 'RT23'
+			pos_hint: {'center_x': 1-0.318, 'center_y': 0.324}
+
+		CatButton:
+			text: 'RT31'
+			pos_hint: {'center_x': 1-0.407, 'center_y': 0.332}
+		CatButton:
+			text: 'RT32'
+			pos_hint: {'center_x': 1-0.372, 'center_y': 0.297}
+		CatButton:
+			text: 'RT33'
+			pos_hint: {'center_x': 1-0.338, 'center_y': 0.264}
+
+		CatButton:
+			text: 'RT41'
+			pos_hint: {'center_x': 1-0.407, 'center_y': 0.26}
+		CatButton:
+			text: 'RT42'
+			pos_hint: {'center_x': 1-0.372, 'center_y': 0.225}
+
+<RightThumbJoystick>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'RT11'
+			pos_hint: {'center_x': 1-0.352, 'center_y': 0.433}
+		CatButton:
+			text: 'RT12'
+			pos_hint: {'center_x': 1-0.317, 'center_y': 0.395}
+
+		CatButton:
+			text: 'RT41'
+			pos_hint: {'center_x': 1-0.407, 'center_y': 0.26}
+		CatButton:
+			text: 'RT42'
+			pos_hint: {'center_x': 1-0.372, 'center_y': 0.225}
+
+		Image:
+			source: 'images/J90.png'
+			id: id_rTM
+			pos_hint: {'center_x': 1-0.362, 'center_y': 0.329}
+			size_hint: (0.08434, 0.15)  #600/1067=0,562324274
+			allow_stretch: True
+			keep_ratio: False
+
+			TM_Button:
+				text: 'Joystick'
+				size: id_rTM.size
+				pos: id_rTM.pos
+				on_release: 
+					app.root.current = 'JoystickAssignment'
+					app.root.get_screen('JoystickAssignment').addRightJoystick()
+					app.root.get_screen('JoystickAssignment').ids.id_JA_L.text = 'Right-Handed Joystick'
+
+<RightThumbTrackball>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		CatButton:
+			text: 'RT11'
+			pos_hint: {'center_x': 1-0.352, 'center_y': 0.433}
+		CatButton:
+			text: 'RT12'
+			pos_hint: {'center_x': 1-0.317, 'center_y': 0.395}
+
+		CatButton:
+			text: 'RT41'
+			pos_hint: {'center_x': 1-0.407, 'center_y': 0.26}
+		CatButton:
+			text: 'RT42'
+			pos_hint: {'center_x': 1-0.372, 'center_y': 0.225}
+
+		Image:
+			source: 'images/T90.png'
+			id: id_rTM
+			pos_hint: {'center_x': 1-0.362, 'center_y': 0.329}
+			size_hint: (0.067478913, 0.12)  #600/1067=0,562324274
+			allow_stretch: True
+			keep_ratio: False
+
+			TM_Button:
+				text: 'Trackball'
+				size: id_rTM.size
+				pos: id_rTM.pos
+				on_release: 
+					app.root.current = 'TrackballAssignment'
+					app.root.get_screen('TrackballAssignment').addRightTrackball()
+					app.root.get_screen('TrackballAssignment').ids.id_TA_L.text = 'Right-Handed Trackball'
+
+<RightWheel>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/W.png'
+			id: id_rW
+			pos_hint: {'center_x': 0.647, 'center_y': 0.6}
+			size_hint: (0.03, 0.1)  #600/1067=0,5623
+			allow_stretch: True
+			keep_ratio: False
+
+        Button:
+			pos_hint: {'center_x': 0.647, 'center_y': 0.6}
+			size_hint: (0.03, 0.1)  #600/1067=0,5623
+			background_normal: ''
+            background_color: (0,0,0,0) if self.state == 'normal' else (1,0,1,1)
+            on_press:print(self.state)
+            #color: (0,0,0,0) #text_color
+
+            on_release:
+                app.root.current = 'WheelAssignment'
+                app.root.get_screen('MainWindow').manager.transition.direction ='down'
+                app.root.get_screen('WheelAssignment').addRightWheel()
+                app.root.get_screen('WheelAssignment').ids.id_WA_L.text = 'Right-Handed Scroll Wheel'
+
+
+#--------------------------------------------custom widgets extra mudules
+
+<LeftJAssignment>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/J90.png'
+			#id: id_lW
+			pos_hint: {'center_x': 0.25, 'center_y': 0.4}
+			size_hint: (.51, .51)  #600/800=0,75
+			#allow_stretch: True
+			#keep_ratio: False
+		CatButton:
+			text: 'LJM'
+			pos_hint: {'center_x': 0.25, 'center_y': 0.4}
+
+		CatButton:
+			text: 'LJU1'
+			pos_hint: {'center_x': 0.25, 'center_y': 0.6}
+		CatButton:
+			text: 'LJD1'
+			pos_hint: {'center_x': 0.25, 'center_y': 0.2}
+		CatButton:
+			text: 'LJL1'
+			pos_hint: {'center_x': 0.1, 'center_y': 0.4}
+		CatButton:
+			text: 'LJR1'
+			pos_hint: {'center_x': 0.4, 'center_y': 0.4}
+
+		CatButton:
+			text: 'LJU2'
+			pos_hint: {'center_x': 0.25, 'center_y': 0.5}
+		CatButton:
+			text: 'LJD2'
+			pos_hint: {'center_x': 0.25, 'center_y': 0.3}
+		CatButton:
+			text: 'LJL2'
+			pos_hint: {'center_x': 0.15, 'center_y': 0.4}
+		CatButton:
+			text: 'LJR2'
+			pos_hint: {'center_x': 0.35, 'center_y': 0.4}			
+
+	BoxLayout:
+		size: root.size
+		pos: root.pos	
+		BoxLayout:
+		BoxLayout:
+			orientation: 'vertical'
+			BoxLayout:
+			BoxLayout:
+				Label:
+					text: 'Additional Event'
+				Switch:
+			Slider:
+
+<RightJAssignment>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/J90.png'
+			#id: id_lW
+			pos_hint: {'center_x': 0.8, 'center_y': 0.5}
+			size_hint: (.51, .51)  #600/800=0,75
+			#allow_stretch: True
+			#keep_ratio: False
+
+
+<LeftTAssignment>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/T90H.png'
+			#id: id_lW
+			pos_hint: {'center_x': 0.2, 'center_y': 0.5}
+			size_hint: (.51, .51)  #600/800=0,75
+			#allow_stretch: True
+			#keep_ratio: False
+
+<RightTAssignment>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/T90.png'
+			#id: id_lW
+			pos_hint: {'center_x': 0.8, 'center_y': 0.5}
+			size_hint: (.51, .51)  #600/800=0,75
+			#allow_stretch: True
+			#keep_ratio: False
+
+
+<LeftWAssignment>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/leftWassignment.png'
+			#id: id_lW
+			pos_hint: {'center_x': 0.25, 'center_y': 0.4}
+			size_hint: (.15, .5)  #600/800=0,75
+			allow_stretch: True
+			keep_ratio: False
+
+		CatButton:
+			text: 'LWF'
+			pos_hint: {'center_x': 0.25, 'center_y': 0.6}
+		CatButton:
+			text: 'LWB'
+			pos_hint: {'center_x': 0.25, 'center_y': 0.2}
+
+	BoxLayout:
+		size: root.size
+		pos: root.pos	
+		BoxLayout:
+		BoxLayout:
+			orientation: 'vertical'
+			BoxLayout:
+			BoxLayout:
+				Label:
+					text: 'Sensitivity'
+				#Switch:
+			Slider:
+
+<RightWAssignment>:
+	FloatLayout:
+		size: root.size
+		pos: root.pos
+
+		Image:
+			source: 'images/leftWassignment.png'
+			#id: id_lW
+			pos_hint: {'center_x': 0.8, 'center_y': 0.45}
+			size_hint: (.51, .51)  #600/800=0,75
+			#allow_stretch: True
+			#keep_ratio: False
+
+
+
+#-------------------------------sublayer widget
+<SubLayerWidget>:
+	BoxLayout:
+		size: root.size
+		pos: root.pos
+		
+		canvas:
+			Color:
+				rgba: (.5, .5, .5, 1)
+			Rectangle:
+				pos: self.pos
+				size: self.size
+
+		Button:
+			text: 'test2'
+			size_hint: (.5, .5)
+		Label:
+			text: 'bla'
+
+
+
+
+
+
+
+#---screens---screens---screens---screens---screens---screens---screens---screens
+<MainWindow>:
+	name: 'MainWindow'
+	id: id_mainWindow
+
+	FloatLayout:		
+    	Image:
+        	source: 'images/hands4.png'
+        	allow_stretch: True
+        	keep_ratio: False
+
+	FloatLayout:
+		id: id_LWidgets
+	FloatLayout:
+		id: id_RWidgets
+
+	BoxLayout:
+		size_hint: (1, 0.1)
+		pos_hint: {'top': 1}
+		padding: [10, 10, 10, 10]
+		spacing: 5
+
+
+		Button:
+			text: 'Layout Menu'
+			on_release: 
+				app.root.current = 'LayoutMenu'
+				root.manager.transition.direction ='down'
+
+#		BoxLayout:
+#			orientation: 'vertical'
+#			Label:
+#				text: 'prime'
+
+        Spinner:
+            id: id_layer_spinner
+            text: root.loadLastActiveLayer()
+            values: root.readLayerList()
+            on_text:
+                #app.root.get_screen('ButtonAssignment').ids.id_BA_Screen.currentLayer = id_layer_spinner.text
+                root.saveLastSession()
+            on_press: root.readLayerList()
+
+
+#		BoxLayout:
+#			orientation: 'vertical'
+#			Label:
+#				text: 'sub'
+#
+#			Spinner:
+#				id: id_sublayer_spinner
+#				text: 'Sublayer'
+#				values: root.readSubayerList()
+#				#on_text: root.layer_spinner(id_sublayer_spinner.text)
+#				on_press: root.readSubayerList()
+
+		Button:
+			text: 'transmit assignment'
+			on_release: root.transmitBytes()
+
+
+
+		Button:
+			text: 'show layout legend'
+			on_release: root.show_layout_legend()
+
+
+
+
+	FloatLayout:
+		#padding: [10, 0, 50, 0]
+		size_hint: (1, 0.05)
+		pos_hint:{"y":0.05}
+		spacing: 2
+
+		Spinner:
+			size_hint: (0.12, 1)
+			pos_hint: {'center_x': .18, 'center_y': .5}
+			id: id_spinner_LD
+			text: 'no left device' #'no left device' if not root.leftDevicesList() else root.leftDevicesList()[0] 
+			values: root.leftDevicesList()
+			option_cls: Factory.get("MySpinnerOption")
+			on_text: 
+				root.addCatWidgets(id_spinner_LD.text)
+				root.saveLastSession()
+
+		Spinner:
+			size_hint: (0.12, 1)
+			pos_hint: {'center_x': .82, 'center_y': .5}
+			id: id_spinner_RD
+			text: 'no right device' #'no right device' if not root.rightDevicesList() else root.rightDevicesList()[0] 
+			values: root.rightDevicesList()
+			on_text: 
+				root.addCatWidgets(id_spinner_RD.text)
+				root.saveLastSession()
+
+
+#    BoxLayout:
+#        size_hint: 0.05,0.1
+#        pos_hint: {"x":0.95}
+#		Button:
+#			text: 'print'
+#			on_release:
+#				root.testPrint()
+#				# print()
+#				# print(root)
+#				# print(root.manager)
+#				#print(root.height)
+#				#print(root.width)
+#				# print()
+##				print(self.size)
+##				print(self.size[0])
+##				print(self.size[1])
+##				print(self.height)
+#				# print(self)
+#				# print()
+#				# print(root.manager.screens[3])
+#				print(self.pos)
+#				print(self.pos)()
+
+
+
+
+#------------------------------------------------------------------
+<LayoutMenu>:
+	name: 'LayoutMenu'
+
+	BoxLayout:
+		orientation: 'vertical'
+		#padding: [padding_left, padding_top, padding_right, padding_bottom]
+		padding: [10, 10, 10, 10]
+		spacing: 2
+
+        BoxLayout:
+            size_hint: (1, .1)
+            #pos_hint:{'top':1}
+            spacing: 5
+
+            Button:
+                text: 'HOME'
+                #size_hint: (0.1, 0.1)
+                on_release:
+                    app.root.current = 'MainWindow'
+                    root.manager.transition.direction = 'up'
+
+            Button:
+                text: 'Save New Layout'
+                on_release: root.saveNewLayout(id_LayoutTitle.text)
+
+
+        BoxLayout:
+            size_hint: (1, 0.1)
+            spacing: 1
+
+            TextInput:
+                id: id_LayoutTitle
+                hint_text: 'Type in the Layout Title'
+                hint_text_color: (.1, .1, .1, 1)
+                background_color: (1, 1, 1, .7)
+                multiline: False
+
+        BoxLayout:
+            size_hint: (1, 0.1)
+            #pos_hint:{'top':0.5}
+            spacing: 1
+
+            Spinner:
+                id: id_layoutSpinner
+                text: 'Existing Layouts'
+                values: root.readLayouts()
+                on_text:
+                    #root.saveLastSession()
+                on_press: root.readLayouts()
+
+        BoxLayout:
+            size_hint: (1, 0.1)
+            spacing: 5
+            Button:
+                text: 'delete'
+                on_release: root.deleteLayout()
+            Button:
+                text: 'rename'
+                on_release: root.renameLayout()
+            Button:
+                text: 'copy'
+                on_release: root.copyLayout()
+
+        BoxLayout:
+            Label:
+                id: id_messageLabel
+                text: ''
+
+
+#		BoxLayout:
+#			size_hint: (1, 0.2)
+#			spacing: 1
+#
+#			Button:
+#				text: 'add Sublayer'
+#				on_release: root.add_sublayer()
+#
+#
+#		BoxLayout:
+#			id: id_sublayerLayout
+#
+#		BoxLayout:
+#			Button:
+#				text: 'import/export'
+#			Button:
+#				text: 'Delete Layer'
+
+
+#--------------------------------------------------------
+<ButtonAssignment>:
+	name: 'ButtonAssignment'
+
+
+	BoxLayout:
+		id: id_BA_Screen # variabale for current layer for save funktion
+		currentLayer: 'tttt'#app.root.get_screen('MainWindow').ids.id_layer_spinner.text
+
+		orientation: 'vertical'
+		#padding: [padding_left, padding_top, padding_right, padding_bottom]
+		padding: [10, 10, 10, 10]
+		spacing: 4
+
+		BoxLayout:
+			size_hint: (1, .1)
+			spacing: 1
+
+			Button:
+				text: 'HOME'
+				#size_hint: (0.1, 0.1)
+				on_release: 
+					app.root.current = 'MainWindow'
+					root.manager.transition.direction = 'up'
+					
+			Button:
+				text: 'Delete'
+				on_release: root.deleteBA()
+
+			Button:
+				text: 'Save Button Assignment'
+				on_release: 
+					root.saveButtonFunktion(id_BA_Screen.currentLayer,\
+					id_current_button.text,\
+					id_ti_button_description.text)
+					app.root.current = 'MainWindow'
+					root.manager.transition.direction = 'up'
+
+
+		BoxLayout:
+			size_hint: (1, 0.2)
+			spacing: 1
+
+			Label:
+				text: 'current Button'
+				id: id_current_button
+				size_hint: (0.1, 1)
+				color: (1, 1, 1, 1)
+		        canvas.before:
+		            Color:
+		                rgba: 0, 1, 1, .3
+		            Rectangle:
+		                pos: self.pos
+		                size: self.size
+
+			BoxLayout:
+				size_hint: (1, 1)
+				spacing: 1
+				orientation: 'vertical'
+
+				Label:
+					text: 'Shortcut'
+					id: id_lable_shortcut
+
+				TextInput:
+					id: id_ti_button_description
+					hint_text: 'decrip button funktion'
+					hint_text_color: (.1, .1, .1, 1)
+					background_color: (1, 1, 1, .7)
+					multiline: False
+
+		GridLayout:
+			size_hint: (1, .1)
+			cols:10
+			#raws:2	
+			canvas:
+				Color:
+					rgba: (0.5,1,0.5,.3)
+				Rectangle:
+					size: self.size
+					pos: self.pos	
+			KeyButton:
+				text: 'Left_Click'				
+				hexval: 0xfe
+			KeyButton:
+				text: 'Middle_Click'				
+				hexval: 0xfd
+			KeyButton:
+				text: 'Right_Click'				
+				hexval: 0xfc
+#			KeyButton:
+#				text: 'Scroll_Forward '
+#				hexval: 0xff
+#			KeyButton:
+#				text: 'Scroll_Backward '
+#				hexval: 0xff
+
+
+        BoxLayout:
+            size_hint: (1, .4)
+            canvas:
+                Color:
+                    rgba: (0,.5,1,.2)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+
+            BoxLayout:
+                orientation: 'vertical'
+                KeyButton:
+                    text: 'ctrl-left'
+                    hexval: 0x80
+                KeyButton:
+                    text: 'shift-left'
+                    hexval: 0x81
+                    #on_release: root.assignKey(self.text,self.hexval)
+                KeyButton:
+                    text: 'alt-left'
+                    hexval: 0x82
+                KeyButton:
+                    text: 'super-left'
+                    hexval: 0x83
+            BoxLayout:
+                orientation: 'vertical'
+                KeyButton:
+                    text: 'ctrl-right'
+                    hexval: 0x84
+                KeyButton:
+                    text: 'shift-right'
+                    hexval: 0x85
+                KeyButton:
+                    text: 'alt-right'
+                    hexval: 0x86
+                KeyButton:
+                    text: 'super-right'
+                    hexval: 0x87
+            BoxLayout:
+                orientation: 'vertical'
+                KeyButton:
+                    text: 'UP_ARROW'
+                    hexval: 0xDA
+                KeyButton:
+                    text: 'DOWN_ARROW'
+                    hexval: 0xD9
+                KeyButton:
+                    text: 'LEFT_ARROW'
+                    hexval: 0xD8
+                KeyButton:
+                    text: 'RIGHT_ARROW'
+                    hexval: 0xD7
+            BoxLayout:
+                orientation: 'vertical'
+                KeyButton:
+                    text: 'ENTER'
+                    hexval: 0x0A
+                KeyButton:
+                    text: 'SPACE'
+                    hexval: 0x20
+                KeyButton:
+                    text: 'BACKSPACE'
+                    hexval: 0xB2
+                KeyButton:
+                    text: 'TAB'
+                    hexval: 0xB3
+            BoxLayout:
+                orientation: 'vertical'
+                KeyButton:
+                    text: 'CAPS_LOCK'
+                    hexval: 0xC1
+                KeyButton:
+                    text: 'RETURN'
+                    hexval: 0xB0
+                KeyButton:
+                    text: "INSERT"
+                    hexval: 0xD1
+                KeyButton:
+                    text: 'DELETE'
+                    hexval: 0xD4
+
+            BoxLayout:
+                orientation: 'vertical'
+                KeyButton:
+                    text: 'HOME'
+                    hexval: 0xD2
+                KeyButton:
+                    text: 'END'
+                    hexval: 0xD5
+                KeyButton:
+                    text: 'PAGE_UP'
+                    hexval: 0xD3
+                KeyButton:
+                    text: 'PAGE_DOWN'
+                    hexval: 0xD6
+                KeyButton:
+                    text: 'ESC'
+                    hexval: 0xB1
+
+		BoxLayout:
+			size_hint: (1, .1)
+			#cols:12
+			#raws:2		
+			canvas:
+				Color:
+					rgba: (1,0,1,.2)
+				Rectangle:
+					size: self.size
+					pos: self.pos
+			KeyButton:
+				text: 'F1'				
+				hexval: 0xC2
+				#on_release: root.assignKey(self.text,self.hexval)
+			KeyButton:
+				text: 'F2'				
+				hexval: 0xC3
+			KeyButton:
+				text: 'F3'				
+				hexval: 0xC4
+			KeyButton:
+				text: 'F4'				
+				hexval: 0xC5
+			KeyButton:
+				text: 'F5'				
+				hexval: 0xC6
+			KeyButton:
+				text: 'F6'				
+				hexval: 0xC7
+			KeyButton:
+				text: 'F7'				
+				hexval: 0xC8
+			KeyButton:
+				text: 'F8'				
+				hexval: 0xC9
+			KeyButton:
+				text: 'F9'				
+				hexval: 0xCA
+			KeyButton:
+				text: 'F10'				
+				hexval: 0xCB
+			KeyButton:
+				text: 'F11'				
+				hexval: 0xCC
+			KeyButton:
+				text: 'F12'				
+				hexval: 0xCD
+			KeyButton:
+				text: 'F13'				
+				hexval: 0xF0
+			KeyButton:
+				text: 'F14'				
+				hexval: 0xF1
+			KeyButton:
+				text: 'F15'				
+				hexval: 0xF2
+			KeyButton:
+				text: 'F16'				
+				hexval: 0xF3
+			KeyButton:
+				text: 'F17'				
+				hexval: 0xF4
+			KeyButton:
+				text: 'F18'				
+				hexval: 0xF5
+			KeyButton:
+				text: 'F19'				
+				hexval: 0xF6
+			KeyButton:
+				text: 'F20'				
+				hexval: 0xF7
+			KeyButton:
+				text: 'F21'				
+				hexval: 0xF8
+			KeyButton:
+				text: 'F22'				
+				hexval: 0xF9
+			KeyButton:
+				text: 'F23'				
+				hexval: 0xFA
+			KeyButton:
+				text: 'F24'				
+				hexval: 0xFB
+
+
+		BoxLayout:
+			size_hint: (1, .1)
+			#cols:13
+			#raws:2
+			canvas:
+				Color:
+					rgba: (1,1,0,.2)
+				Rectangle:
+					size: self.size
+					pos: self.pos
+			KeyButton:
+				text: 'a'				
+				hexval: 0x61
+				#on_release: root.assignKey(self.text,self.hexval)
+			KeyButton:
+				text: 'b'				
+				hexval: 0x62
+			KeyButton:
+				text: 'c'				
+				hexval: 0x63
+			KeyButton:
+				text: 'd'				
+				hexval: 0x64
+			KeyButton:
+				text: 'e'				
+				hexval: 0x65
+			KeyButton:
+				text: 'f'				
+				hexval: 0x66
+			KeyButton:
+				text: 'g'				
+				hexval: 0x67
+			KeyButton:
+				text: 'h'				
+				hexval: 0x68
+			KeyButton:
+				text: 'i'				
+				hexval: 0x69
+			KeyButton:
+				text: 'j'				
+				hexval: 0x6A
+			KeyButton:
+				text: 'k'				
+				hexval: 0x6B
+			KeyButton:
+				text: 'l'				
+				hexval: 0x6C
+			KeyButton:
+				text: 'm'				
+				hexval: 0x6D
+			KeyButton:
+				text: 'n'				
+				hexval: 0x6E
+			KeyButton:
+				text: 'o'				
+				hexval: 0x6F
+			KeyButton:
+				text: 'p'				
+				hexval: 0x70
+			KeyButton:
+				text: 'q'				
+				hexval: 0x71
+			KeyButton:
+				text: 'r'				
+				hexval: 0x72
+			KeyButton:
+				text: 's'				
+				hexval: 0x73
+			KeyButton:
+				text: 't'				
+				hexval: 0x74
+			KeyButton:
+				text: 'u'				
+				hexval: 0x75
+			KeyButton:
+				text: 'v'				
+				hexval: 0x76
+			KeyButton:
+				text: 'w'				
+				hexval: 0x77
+			KeyButton:
+				text: 'x'				
+				hexval: 0x78
+			KeyButton:
+				text: 'y'				
+				hexval: 0x79
+			KeyButton:
+				text: 'z'				
+				hexval: 0x7A
+
+		GridLayout:
+			size_hint: (1, .1)
+			cols:10
+			#raws:2	
+			canvas:
+				Color:
+					rgba: (0,0,1,.2)
+				Rectangle:
+					size: self.size
+					pos: self.pos	
+			KeyButton:
+				text: '0'				
+				hexval: 0x30
+				#on_release: root.assignKey(self.text,self.hexval)
+			KeyButton:
+				text: '1'				
+				hexval: 0x31
+			KeyButton:
+				text: '2'				
+				hexval: 0x32
+			KeyButton:
+				text: '3'				
+				hexval: 0x33
+			KeyButton:
+				text: '4'				
+				hexval: 0x34
+			KeyButton:
+				text: '5'				
+				hexval: 0x35
+			KeyButton:
+				text: '6'				
+				hexval: 0x36
+			KeyButton:
+				text: '7'				
+				hexval: 0x37
+			KeyButton:
+				text: '8'				
+				hexval: 0x38
+			KeyButton:
+				text: '9'				
+				hexval: 0x39
+
+		GridLayout:
+			size_hint: (1, .1)
+			cols:10
+			#raws:2
+			canvas:
+				Color:
+					rgba: (0,0,1,.2)
+				Rectangle:
+					size: self.size
+					pos: self.pos
+			KeyButton:
+				text: 'Keypad-0'
+				hexval: 0xE0
+			KeyButton:
+				text: 'Keypad-1'
+				hexval: 0xE1
+			KeyButton:
+				text: 'Keypad-2'
+				hexval: 0xE2
+			KeyButton:
+				text: 'Keypad-3'
+				hexval: 0xE3
+			KeyButton:
+				text: 'Keypad-4'
+				hexval: 0xE4
+			KeyButton:
+				text: 'Keypad-5'
+				hexval: 0xE5
+			KeyButton:
+				text: 'Keypad-6'
+				hexval: 0xE6
+			KeyButton:
+				text: 'Keypad-7'
+				hexval: 0xE7
+			KeyButton:
+				text: 'Keypad-8'
+				hexval: 0xE8
+			KeyButton:
+				text: 'Keypad-9'
+				hexval: 0xE9
+
+
+		GridLayout:
+			size_hint: (1, .2)
+			cols:16
+			#raws:2
+			canvas:
+				Color:
+					rgba: (1,0,0,.2)
+				Rectangle:
+					size: self.size
+					pos: self.pos
+
+			KeyButton:
+				text: '+'				
+				hexval: 0x2B
+				#on_release: root.assignKey(self.text,self.hexval)
+			KeyButton:
+				text: '-'				
+				hexval: 0x2D
+			KeyButton:
+				text: '*'				
+				hexval: 0x2A
+			KeyButton:
+				text: '/'				
+				hexval: 0x2F
+			KeyButton:
+				text: '='				
+				hexval: 0x3D
+			KeyButton:
+				text: '('				
+				hexval: 0x28
+			KeyButton:
+				text: ')'				
+				hexval: 0x29
+			KeyButton:
+				text: '{'				
+				hexval: 0x7B
+			KeyButton:
+				text: '}'				
+				hexval: 0x7D
+			KeyButton:
+				text: '['				
+				hexval: 0x5B
+			KeyButton:
+				text: ']'				
+				hexval: 0x5D
+			KeyButton:
+				text: "'"				
+				hexval: 0x27
+			KeyButton:
+				text: '"'				
+				hexval: 0x22
+			KeyButton:
+				text: '.'				
+				hexval: 0x2E
+			KeyButton:
+				text: ':'				
+				hexval: 0x3A
+			KeyButton:
+				text: ','				
+				hexval: 0x2C
+			KeyButton:
+				text: ';'				
+				hexval: 0x3B
+			KeyButton:
+				text: '?'				
+				hexval: 0x3F
+			KeyButton:
+				text: '!'				
+				hexval: 0x21
+			KeyButton:
+				text: '#'				
+				hexval: 0x23 
+			KeyButton:
+				text: '§'				
+				hexval: 0x80
+			KeyButton:
+				text: '$'				
+				hexval: 0x24
+			KeyButton:
+				text: '%'				
+				hexval: 0x25
+			KeyButton:
+				text: '&'				
+				hexval: 0x26
+			KeyButton:
+				text: '@'				
+				hexval: 0x40
+			KeyButton:
+				text: '<'				
+				hexval: 0x3C
+			KeyButton:
+				text: '>'				
+				hexval: 0x3E
+			KeyButton:
+				text: "\\"				
+				hexval: 0x5C
+			KeyButton:
+				text: '|'				
+				hexval: 0x7C
+			KeyButton:
+				text: '^'				
+				hexval: 0x5E
+			KeyButton:
+				text: '_'				
+				hexval: 0x5F
+			KeyButton:
+				text: '~'				
+				hexval: 0x7E
+
+
+
+
+
+#------screens extra thumb mudule------screens extra thumb mudule
+
+<JoystickAssignment>:
+	name: 'JoystickAssignment'
+
+	FloatLayout:
+		id: id_JA_FL
+
+	BoxLayout:
+
+		orientation: 'vertical'
+		#padding: [padding_left, padding_top, padding_right, padding_bottom]
+		padding: [10, 10, 10, 10]
+		spacing: 4
+
+		BoxLayout:
+			size_hint: (1, .1)
+			spacing: 1
+
+			Button:
+				text: 'HOME'
+				#size_hint: (0.1, 0.1)
+				on_release: 
+					app.root.current = 'MainWindow'
+					root.manager.transition.direction = 'up'
+			Button:
+				text: 'Save'
+				on_release: 
+
+		BoxLayout:
+			size_hint: (1, .1)
+			spacing: 1
+			Label:
+				text: 'current Joystick'
+				id: id_JA_L
+				size_hint: (0.1, 1)
+				color: (1, 1, 1, 1)
+				canvas.before:
+				    Color:
+				        rgba: 0, 1, 1, .3
+				    Rectangle:
+				        pos: self.pos
+				        size: self.size
+		BoxLayout:
+				
+
+
+<TrackballAssignment>:
+	name: 'TrackballAssignment'
+
+	FloatLayout:
+		id: id_TA_FL
+
+	BoxLayout:
+		orientation: 'vertical'
+		#padding: [padding_left, padding_top, padding_right, padding_bottom]
+		padding: [10, 10, 10, 10]
+		spacing: 4
+
+		BoxLayout:
+			size_hint: (1, .1)
+			spacing: 1
+
+			Button:
+				text: 'HOME'
+				#size_hint: (0.1, 0.1)
+				on_release: 
+					app.root.current = 'MainWindow'
+					root.manager.transition.direction = 'up'
+			Button:
+				text: 'Save'
+				on_release: 
+
+
+		BoxLayout:
+			size_hint: (1, .1)
+			spacing: 1
+			Label:
+				text: 'current Trackball'
+				id: id_TA_L
+				size_hint: (0.1, 1)
+				color: (1, 1, 1, 1)
+				canvas.before:
+				    Color:
+				        rgba: 0, 1, 1, .3
+				    Rectangle:
+				        pos: self.pos
+				        size: self.size
+		BoxLayout:
+
+
+
+<WheelAssignment>:
+	name: 'WheelAssignment'
+	
+	FloatLayout:
+		id: id_WA_FL
+
+	BoxLayout:
+		orientation: 'vertical'
+		#padding: [padding_left, padding_top, padding_right, padding_bottom]
+		padding: [10, 10, 10, 10]
+		spacing: 4
+
+
+		BoxLayout:
+			size_hint: (1, .1)
+			spacing: 1
+
+			Button:
+				text: 'HOME'
+				#size_hint: (0.1, 0.1)
+				on_release: 
+					app.root.current = 'MainWindow'
+					root.manager.transition.direction = 'up'
+			Button:
+				text: 'Save'
+				on_release: 
+	
+		BoxLayout:
+			size_hint: (1, .1)
+			spacing: 1
+			Label:
+				text: 'current Scroll Wheel'
+				id: id_WA_L
+				size_hint: (0.1, 1)
+				color: (1, 1, 1, 1)
+				canvas.before:
+				    Color:
+				        rgba: 0, 1, 1, .3
+				    Rectangle:
+				        pos: self.pos
+				        size: self.size
+		# 	Label:
+		# 		id: id_Lable_Wheel
+		# 		text: 'test wheel' 
+
+		BoxLayout:
+
+
+
+
+<PopUpLayer>:
+	FloatLayout:		
+		padding: [10, 10, 10, 10] #padding: [padding_left, padding_top, padding_right, padding_bottom]
+		id: id_mainWFloatLayout
+
+    	Image:
+        	source: 'images/hands4.png'
+        	id: img
+        	allow_stretch: True
+        	keep_ratio: False
+	Label:
+		text: 'testing pop'
