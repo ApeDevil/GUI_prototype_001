@@ -20,7 +20,7 @@ for monitor in get_monitors():
 print(width)
 print(height)
 
-Config.set('graphics', 'width', 3000)
+Config.set('graphics', 'width', width)
 Config.set('graphics', 'height', height)
 
 
